@@ -922,6 +922,34 @@ test('beside a narrow band tomorrow gives way before the note of what is in hand
   await ui.unmount()
 })
 
+test('the bar gives up width before the note of what is in hand is cut', DUTCH_WITH_WEATHER, async ($, on) => {
+  // Arrange: 118 columns with both costs and the weather, and a call whose note is 22 long.
+  const clock = mock.clock(on, { now: START })
+  surface(on)
+  mainLoop(on, 5)
+  let note: unknown
+  let bar: unknown
+  on('tool.call', { tool: 'Bash' }, async () => {
+    const during = await $.ui.mount({ plugin: PLUGIN, surface: 'terminal', ...BAND, props: { ...BAND.props, bodyColumns: 118 } })
+    note = await during.find({ type: 'Text', text: /^Bash: De tests draaien$/ })
+    bar = await during.find({ type: 'Text', text: /^ Bezig 0:00 {18}$/ })
+    await during.unmount()
+    return { result: 'ok' }
+  })
+  await startSession($, on, [FORECAST])
+  await clock.advance(1)
+  await $.prompt.submit(typed('doe iets'))
+  await $.turn.start({ text: 'doe iets', turnId: 'turn-1' })
+  await $.session.measure(measure(5.31))
+
+  // Act
+  await $.tool.call({ tool: 'Bash', command: 'npm test', description: 'De tests draaien' })
+
+  // Assert: the note stands whole, and the bar is 29 columns wide where it would have taken 35.
+  expect(note).toBeDefined()
+  expect(bar).toBeDefined()
+})
+
 test('the bar is blue unless a color is set', async ($, on) => {
   // Arrange
   mock.clock(on, { now: START })

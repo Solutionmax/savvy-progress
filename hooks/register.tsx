@@ -58,8 +58,10 @@ const COST_WORDS_MIN_COLUMNS = 60
 const MAIN_TITLE = 'Claude'
 // The note beside the main session's bar is left out rather than cut shorter than this.
 const NOTE_MIN_WIDTH = 8
-// What the note is given before the bar grows past its minimum, and before the weather takes its room.
+// What the note is left at least while the weather is drawn.
 const NOTE_WIDTH = 16
+// The bar gives up its width, down to its minimum, for a note up to this long.
+const NOTE_MAX_WIDTH = 48
 // The weather is asked again this often.
 const WEATHER_EVERY_MS = 30 * 60_000
 // What the engine calls an agent whose loop is over.
@@ -1491,8 +1493,10 @@ export const register: Register = (on, options) => {
     const fits = (width: number): boolean => cols - rowFixed - width - 2 - 2 - MIN_BAR_WIDTH - 2 >= noteRoom
     const skyPart = sky ? [sky.full, sky.short].find(part => fits(part.width)) : undefined
     const taken = rowFixed + (skyPart ? skyPart.width + 2 : 0)
-    // The note gets its share first, the bar what is left up to its full width.
-    const mainWidth = Math.max(MIN_BAR_WIDTH, Math.min(40, cols - taken - 2 - 2 - noteRoom))
+    // The note says what is in hand, so it gets the room it asks for first; the
+    // bar takes what is left, from its minimum up to its full width.
+    const noteAsk = Math.min(note.length, NOTE_MAX_WIDTH)
+    const mainWidth = Math.max(MIN_BAR_WIDTH, Math.min(40, cols - taken - 2 - 2 - noteAsk))
     const noteWidth = cols - taken - 2 - mainWidth - 2
     // A block slides while work is under way with nothing to measure it by.
     const sliding = (parts: { before: string; block: string; after: string }, fill: string) => (

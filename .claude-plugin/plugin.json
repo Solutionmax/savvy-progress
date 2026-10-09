@@ -1,6 +1,6 @@
 {
   "name": "savvy-progress",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Terminal bar above the prompt that always says what the session is doing and what the turn and the session cost, with the weather if a place is set, plus an agents bar and a live agents panel (/agents-info). Fork of johnnyvizz/claude-kit savvy-progress 1.2.0.",
   "author": {
     "name": "Solutionmax",

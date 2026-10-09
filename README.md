@@ -2,13 +2,7 @@
 
 A Claude Code mod for the terminal. It puts a bar above the prompt that always says what the session is doing and what it costs, shows the weather if you want it, and opens a live panel of subagents with a walking crab per agent.
 
-```
-At rest       ○ Claude [ Done, waiting for you        ]                        ↻ turn $0.42  Σ session $15.10  ⛅ 19° · tomorrow ☔ 24°
-Working       ● Claude [▓▓▓ Working 0:22              ]  Bash: run the tests   ↻ turn $0.31  Σ session $15.41  ⛅ 19° · tomorrow ☔ 24°
-With agents   ● Claude [▓▓▓ Working 2:10              ]  Agent: review change  ↻ turn $1.20  Σ session $16.30  ⛅ 19° · tomorrow ☔ 24°
-                Agents [████ 33% · eta 1:20           ]  1/3 agents  ≈$0.80  ×3  ✕
-                ↳ working on: review change
-```
+![The bar at rest, while working, and with subagents running](docs/bar.svg)
 
 > Fork of [johnnyvizz/claude-kit](https://github.com/johnnyvizz/claude-kit) `savvy-progress` 1.2.0 (MIT, see `LICENSE`). The desktop drawing is upstream's, untouched. Everything below is about the terminal.
 
@@ -21,6 +15,10 @@ With agents   ● Claude [▓▓▓ Working 2:10              ]  Agent: review c
 - **The panel opens and closes by itself.** Any subagent opens it, and 5 seconds after the last one ends it closes again, also when you opened it by hand. A panel you open at rest (`/agents-info`) stays until you close it. Each agent is a crab drawn in cells that walks while it works, in a costume of its own per agent type.
 - **Marks.** `✗ n` for failed runs and `quiet 4m` for a running worker with no sign of life for three minutes or more.
 - **Room.** When the band is narrow (a docked panel takes 44 columns) tomorrow's weather gives way first, then the weather, before the note of what is in hand does. Below 60 columns the costs keep their marks and drop their words.
+
+<img src="docs/panel.svg" alt="The agents panel: a crab per subagent, with model, steps, context, cost and time" width="414">
+
+Both pictures are drawn from what the mod itself returns, cell for cell; the font and the exact colors are your terminal's.
 
 ## Install
 

@@ -11,7 +11,7 @@
       "name": "savvy-progress",
       "source": "./",
       "description": "Mod: a terminal bar that says what the session is doing and what it costs, the weather, and a live agents panel.",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "category": "mod"
     }
   ]
