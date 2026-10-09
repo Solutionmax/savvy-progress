@@ -43,7 +43,7 @@ A panel the mod opens by itself is only drawn on a terminal of 144 columns or mo
 | `paneBackground` | `#232431` | A color painted over the panel; empty leaves the engine's own. |
 | `weatherPlace` | empty | Latitude and longitude for the weather, as `lat,lon`; empty leaves the weather off. |
 
-Change them in `/config`, where each is a row under the mod, or in `~/.claude/settings.json`, keyed by the mod's name and the marketplace it came from:
+Change them with `/plugin configure savvy-progress@solutionmax`, or in `~/.claude/settings.json`, keyed by the mod's name and the marketplace it came from:
 
 ```json
 {
@@ -55,7 +55,7 @@ Change them in `/config`, where each is a row under the mod, or in `~/.claude/se
 }
 ```
 
-A change in `/config` reloads the mod by itself; after editing the file, type `/reload-plugins`.
+After editing the file, type `/reload-plugins`. The settings can also be given as the mod is installed from a shell: `claude plugin install savvy-progress@solutionmax --config barColor=#e5484d --config weatherPlace=52.37,4.90`.
 
 ### The color of the bar
 
