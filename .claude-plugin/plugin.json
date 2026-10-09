@@ -1,0 +1,45 @@
+{
+  "name": "savvy-progress",
+  "version": "1.5.0",
+  "description": "Terminal bar above the prompt that always says what the session is doing and what the turn and the session cost, with the weather if a place is set, plus an agents bar and a live agents panel (/agents-info). Fork of johnnyvizz/claude-kit savvy-progress 1.2.0.",
+  "author": {
+    "name": "Solutionmax",
+    "url": "https://github.com/Solutionmax"
+  },
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "language": {
+      "type": "string",
+      "title": "Panel language",
+      "description": "auto follows Claude Code's language setting, then the system locale",
+      "default": "auto",
+      "options": [
+        "auto",
+        "en",
+        "ru",
+        "nl"
+      ]
+    },
+    "barColor": {
+      "type": "string",
+      "title": "Bar color (terminal)",
+      "description": "The color of the bar and its sliding block in a terminal, as a hex color such as #0079d2 or #f80; anything else leaves the default",
+      "default": "#0079d2"
+    },
+    "paneBackground": {
+      "type": "string",
+      "title": "Panel background (terminal)",
+      "description": "A color painted over the panel in a terminal, such as the terminal's own background; empty leaves the engine's",
+      "default": "#232431"
+    },
+    "weatherPlace": {
+      "type": "string",
+      "title": "Weather place",
+      "description": "Latitude and longitude for the weather in the bar, as lat,lon (for example 52.37,4.90); empty leaves the weather off. Asked from open-meteo.com every half hour.",
+      "default": ""
+    }
+  },
+  "homepage": "https://github.com/Solutionmax/savvy-progress",
+  "repository": "https://github.com/Solutionmax/savvy-progress",
+  "license": "MIT"
+}
